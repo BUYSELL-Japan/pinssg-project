@@ -1,31 +1,3 @@
 [build]
   command = "npm run build"
   publish = "dist"
-
-[[redirects]]
-  from = "/en/spot/*"
-  to = "https://pinssg.netlify.app/en/spot/:splat"
-  status = 200
-  force = true
-
-[[redirects]]
-  from = "/zh/spot/*"
-  to = "https://pinssg.netlify.app/zh/spot/:splat"
-  status = 200
-  force = true
-
-# アセットは MOP PWA から取得（追加）
-[[redirects]]
-  from = "/assets/*"
-  to = "/assets/:splat"
-  status = 200
-
-[[redirects]]
-  from = "/manifest.webmanifest"
-  to = "/manifest.webmanifest"
-  status = 200
-
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
