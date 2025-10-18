@@ -35,6 +35,7 @@ export function getLocalizedPath(path: string, language: Language): string {
 
 export interface GuideItem {
   item_id: string;
+  pin_id: string;
   slug: string;
   title: string;
   title_zh_tw: string;

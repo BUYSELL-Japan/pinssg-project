@@ -56,6 +56,7 @@ interface GeoJSONFeature {
   type: string;
   properties: {
     id?: number | string;
+    pin_id?: string;
     title?: string;
     title_zh_tw?: string;
     description_en?: string;
@@ -77,6 +78,7 @@ export async function fetchGuideData() {
 
     let guideItems: Array<{
       item_id: string;
+      pin_id: string;
       slug: string;
       title: string;
       title_zh_tw: string;
@@ -92,6 +94,7 @@ export async function fetchGuideData() {
           const title = feature.properties.title || '';
           return {
             item_id: String(feature.properties.id),
+            pin_id: feature.properties.pin_id || String(feature.properties.id),
             slug: slugify(title),
             title: title,
             title_zh_tw: feature.properties.title_zh_tw || '',

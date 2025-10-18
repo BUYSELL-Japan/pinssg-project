@@ -63,7 +63,7 @@ const pageDescription = t('siteDescription', currentLanguage);
           <div class="guides-grid">
             {guideItems.map((item, index) => (
               <article class="guide-card">
-                <a href={`/zh/spot/${item.slug}/`} class="guide-link">
+                <a href={`/zh/spot/${item.slug}/?pin_id=${item.pin_id}`} class="guide-link">
                   <div class="guide-image-container">
                     {item.main_image_url && (
                       <img

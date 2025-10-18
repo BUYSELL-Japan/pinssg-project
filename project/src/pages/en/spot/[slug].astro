@@ -34,6 +34,9 @@ export async function getStaticPaths() {
 const { guideData } = Astro.props;
 const currentLanguage: Language = 'en';
 
+const pinId = guideData.pin_id;
+const redirectUrl = `https://mop-okinawa.com/?pin_id=${pinId}&lang=en`;
+
 const homeText = t('home', currentLanguage);
 const detailInfoText = t('detailInfo', currentLanguage);
 const viewOtherSpotsText = t('viewOtherSpots', currentLanguage);
@@ -48,6 +51,9 @@ const ogImage = guideData.main_image_url;
 ---
 
 <Layout title={pageTitle} description={pageDescription} ogUrl={ogUrl} ogImage={ogImage}>
+  <script is:inline define:vars={{ redirectUrl }}>
+    window.location.href = redirectUrl;
+  </script>
   <main class="guide-container">
     <div class="language-selector-container">
       <LanguageSelector currentLanguage={currentLanguage} currentPath={`/en/spot/${guideData.slug}/`} />
