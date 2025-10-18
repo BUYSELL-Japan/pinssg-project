@@ -48,20 +48,6 @@ const pageUrl = ogUrl || `https://guide-book.mop-okinawa.com${Astro.url.pathname
 		<meta property="twitter:description" content={pageDescription} />
 		{ogImage && <meta property="twitter:image" content={ogImage} />}
 		
-		<!-- Google Fonts -->
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;800&display=swap" rel="stylesheet">
-		
-		<!-- Google tag (gtag.js) -->
-		<script async src="https://www.googletagmanager.com/gtag/js?id=G-78VFL11X37"></script>
-		<script is:inline>
-		  window.dataLayer = window.dataLayer || [];
-		  function gtag(){dataLayer.push(arguments);}
-		  gtag('js', new Date());
-
-		  gtag('config', 'G-78VFL11X37');
-		</script>
 	</head>
 	<body>
 		<slot />
@@ -70,7 +56,7 @@ const pageUrl = ogUrl || `https://guide-book.mop-okinawa.com${Astro.url.pathname
 
 <style is:global>
 	html {
-		font-family: 'Noto Sans JP', system-ui, sans-serif;
+		font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', 'Yu Gothic', YuGothic, sans-serif;
 		line-height: 1.6;
 	}
 	

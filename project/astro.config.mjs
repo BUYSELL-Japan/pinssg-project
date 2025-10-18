@@ -5,6 +5,13 @@ import { defineConfig } from 'astro/config';
 export default defineConfig({
   output: 'static',
   build: {
-    format: 'file'
+    format: 'file',
+    inlineStylesheets: 'always'
+  },
+  vite: {
+    build: {
+      minify: 'esbuild',
+      cssCodeSplit: false
+    }
   }
 });

@@ -65,12 +65,18 @@ const pageDescription = t('siteDescription', currentLanguage);
               <article class="guide-card">
                 <a href={`/en/spot/${item.slug}/`} class="guide-link">
                   <div class="guide-image-container">
-                    <div class="guide-image-placeholder">
-                      <div class="guide-overlay">
-                        <span class="view-detail">{t('viewDetail', currentLanguage)}</span>
-                      </div>
-                      </div>
+                    {item.main_image_url && (
+                      <img
+                        src={item.main_image_url}
+                        alt={getLocalizedText(item, 'title', currentLanguage)}
+                        class="guide-image"
+                        loading="lazy"
+                      />
+                    )}
+                    <div class="guide-overlay">
+                      <span class="view-detail">{t('viewDetail', currentLanguage)}</span>
                     </div>
+                  </div>
                   <div class="guide-content">
                     <h3 class="guide-title">{getLocalizedText(item, 'title', currentLanguage)}</h3>
                   </div>

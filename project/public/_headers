@@ -1,0 +1,13 @@
+/_astro/*
+  Access-Control-Allow-Origin: *
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.webmanifest
+  Access-Control-Allow-Origin: *
+  Content-Type: application/manifest+json
+
+/*.js
+  Access-Control-Allow-Origin: *
+
+/*.css
+  Access-Control-Allow-Origin: *
