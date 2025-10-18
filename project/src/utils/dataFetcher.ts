@@ -90,8 +90,11 @@ export async function fetchGuideData() {
         .filter((feature: GeoJSONFeature) => feature && feature.properties && feature.properties.id)
         .map((feature: GeoJSONFeature) => {
           const title = feature.properties.title || '';
+          const rawId = String(feature.properties.id);
+          // Format ID as oki01, oki02, etc.
+          const formattedId = `oki${rawId.padStart(2, '0')}`;
           return {
-            item_id: String(feature.properties.id),
+            item_id: formattedId,
             slug: slugify(title),
             title: title,
             title_zh_tw: feature.properties.title_zh_tw || '',
