@@ -52,7 +52,9 @@ const ogImage = guideData.main_image_url;
 
 <Layout title={pageTitle} description={pageDescription} ogUrl={ogUrl} ogImage={ogImage}>
   <script is:inline define:vars={{ redirectUrl }}>
-    window.location.href = redirectUrl;
+    setTimeout(function() {
+      window.location.href = redirectUrl;
+    }, 1500);
   </script>
   <main class="guide-container">
     <div class="language-selector-container">
