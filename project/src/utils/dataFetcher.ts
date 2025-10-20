@@ -85,6 +85,7 @@ export async function fetchGuideData() {
       description_en: string;
       description_zh_tw: string;
       main_image_url?: string;
+      photo_url?: string;
     }> = [];
 
     if (data && data.type === 'FeatureCollection' && Array.isArray(data.features)) {
@@ -100,7 +101,8 @@ export async function fetchGuideData() {
             title_zh_tw: feature.properties.title_zh_tw || '',
             description_en: feature.properties.description_en || '',
             description_zh_tw: feature.properties.description_zh_tw || '',
-            main_image_url: feature.properties.photo_url || undefined
+            main_image_url: feature.properties.photo_url || undefined,
+            photo_url: feature.properties.photo_url || undefined
           };
         });
     }

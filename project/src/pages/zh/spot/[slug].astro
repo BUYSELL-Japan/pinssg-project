@@ -35,11 +35,13 @@ const { guideData } = Astro.props;
 const currentLanguage: Language = 'zh-tw';
 
 const pinId = guideData.pin_id;
-const redirectUrl = `https://mop-okinawa.com/?pin_id=${pinId}&lang=zh`;
+const mopUrl = `https://mop-okinawa.com/?pin_id=${pinId}&lang=zh`;
 
 const homeText = t('home', currentLanguage);
 const detailInfoText = t('detailInfo', currentLanguage);
 const viewOtherSpotsText = t('viewOtherSpots', currentLanguage);
+const viewInMopText = '在 MOP 中查看';
+const viewMapTicketsText = '查看地圖、門票和完整指南';
 
 const spotTitle = getLocalizedText(guideData, 'title', currentLanguage);
 const pageTitle = `沖繩地圖與導覽 - ${spotTitle} - MOP`;
@@ -51,11 +53,6 @@ const ogImage = guideData.main_image_url;
 ---
 
 <Layout title={pageTitle} description={pageDescription} ogUrl={ogUrl} ogImage={ogImage}>
-  <script is:inline define:vars={{ redirectUrl }}>
-    setTimeout(function() {
-      window.location.href = redirectUrl;
-    }, 1500);
-  </script>
   <main class="guide-container">
     <div class="language-selector-container">
       <LanguageSelector currentLanguage={currentLanguage} currentPath={`/zh/spot/${guideData.slug}/`} />
@@ -76,6 +73,19 @@ const ogImage = guideData.main_image_url;
       </header>
 
       <div class="content-wrapper">
+        {guideData.photo_url && (
+          <section class="image-section">
+            <div class="image-container">
+              <img
+                src={guideData.photo_url}
+                alt={spotTitle}
+                class="spot-image"
+                loading="lazy"
+              />
+            </div>
+          </section>
+        )}
+
         <section class="description-section">
           <div class="content-card">
             <h2 class="section-title">{detailInfoText}</h2>
@@ -85,6 +95,16 @@ const ogImage = guideData.main_image_url;
           </div>
         </section>
 
+
+        <section class="cta-section">
+          <div class="cta-card">
+            <h3 class="cta-title">{viewInMopText}</h3>
+            <p class="cta-description">{viewMapTicketsText}</p>
+            <a href={mopUrl} class="mop-button" target="_blank" rel="noopener noreferrer">
+              打開 MOP 應用 →
+            </a>
+          </div>
+        </section>
 
         <section class="navigation-section">
           <div class="nav-card">
@@ -247,6 +267,75 @@ const ogImage = guideData.main_image_url;
     transform: translateY(-2px);
     box-shadow: 0 8px 25px rgba(77, 208, 225, 0.4);
     background: linear-gradient(135deg, #00bcd4, #0097a7);
+  }
+
+  .image-section {
+    max-width: 1000px;
+    margin: 0 auto 2rem;
+    padding: 0 2rem;
+  }
+
+  .image-container {
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 15px 40px rgba(0, 188, 212, 0.2);
+    background: white;
+  }
+
+  .spot-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    max-height: 600px;
+    margin: 0 auto;
+  }
+
+  .cta-section {
+    max-width: 800px;
+    margin: 3rem auto;
+    text-align: center;
+  }
+
+  .cta-card {
+    background: linear-gradient(135deg, #26c6da 0%, #4dd0e1 50%, #80deea 100%);
+    border-radius: 20px;
+    padding: 3rem 2rem;
+    box-shadow: 0 15px 40px rgba(77, 208, 225, 0.3);
+  }
+
+  .cta-title {
+    color: white;
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin: 0 0 1rem 0;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  }
+
+  .cta-description {
+    color: white;
+    font-size: 1.1rem;
+    margin: 0 0 2rem 0;
+    opacity: 0.95;
+  }
+
+  .mop-button {
+    display: inline-block;
+    background: white;
+    color: #00838f;
+    text-decoration: none;
+    padding: 1.2rem 3rem;
+    border-radius: 30px;
+    font-weight: 700;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  }
+
+  .mop-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+    background: #f5f5f5;
   }
 
   @media (max-width: 768px) {

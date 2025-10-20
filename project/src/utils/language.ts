@@ -42,6 +42,7 @@ export interface GuideItem {
   description_en: string;
   description_zh_tw: string;
   main_image_url?: string;
+  photo_url?: string;
 }
 
 export function getLocalizedText(item: GuideItem, field: keyof GuideItem, language: Language): string {
