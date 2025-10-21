@@ -8,6 +8,11 @@ import {
 import { fetchGuideData } from '../../../utils/dataFetcher';
 import LanguageSelector from '../../../components/LanguageSelector.astro';
 import Layout from '../../../layouts/Layout.astro';
+import {
+  generateTouristAttractionSchema,
+  generateBreadcrumbSchema,
+  generateWebPageSchema
+} from '../../../utils/schema';
 
 export async function getStaticPaths() {
   try {
@@ -48,11 +53,20 @@ const pageTitle = `Okinawa Map & Guide - ${spotTitle} - MOP`;
 const fullDescription = getLocalizedText(guideData, 'description_en', currentLanguage);
 const truncatedDescription = fullDescription.length > 140 ? fullDescription.substring(0, 140) + '...' : fullDescription;
 const pageDescription = `${truncatedDescription} Click to view tickets, map & the full guide in MOP!`;
-const ogUrl = `https://mop-okinawa.com/en/spot/${guideData.slug}/`;
+const baseUrl = 'https://mop-okinawa.com';
+const ogUrl = `${baseUrl}/en/spot/${guideData.slug}/`;
 const ogImage = guideData.main_image_url;
+
+const touristAttractionSchema = generateTouristAttractionSchema(guideData, currentLanguage, ogUrl);
+const breadcrumbSchema = generateBreadcrumbSchema(guideData.category, spotTitle, currentLanguage, baseUrl, guideData.slug);
+const webPageSchema = generateWebPageSchema(guideData, currentLanguage, ogUrl, baseUrl);
 ---
 
 <Layout title={pageTitle} description={pageDescription} ogUrl={ogUrl} ogImage={ogImage}>
+  <script type="application/ld+json" set:html={JSON.stringify(touristAttractionSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(webPageSchema)} />
+
   <main class="guide-container">
     <div class="language-selector-container">
       <LanguageSelector currentLanguage={currentLanguage} currentPath={`/en/spot/${guideData.slug}/`} />

@@ -62,6 +62,9 @@ interface GeoJSONFeature {
     description_en?: string;
     description_zh_tw?: string;
     photo_url?: string;
+    category?: number;
+    address?: string;
+    address_zh_tw?: string;
     [key: string]: any;
   };
   geometry: any;
@@ -86,6 +89,9 @@ export async function fetchGuideData() {
       description_zh_tw: string;
       main_image_url?: string;
       photo_url?: string;
+      category?: number;
+      address?: string;
+      address_zh_tw?: string;
     }> = [];
 
     if (data && data.type === 'FeatureCollection' && Array.isArray(data.features)) {
@@ -102,7 +108,10 @@ export async function fetchGuideData() {
             description_en: feature.properties.description_en || '',
             description_zh_tw: feature.properties.description_zh_tw || '',
             main_image_url: feature.properties.photo_url || undefined,
-            photo_url: feature.properties.photo_url || undefined
+            photo_url: feature.properties.photo_url || undefined,
+            category: feature.properties.category,
+            address: feature.properties.address,
+            address_zh_tw: feature.properties.address_zh_tw
           };
         });
     }
