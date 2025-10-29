@@ -11,7 +11,6 @@ export const GET: APIRoute = async () => {
     const staticUrls = [
       { url: `${baseUrl}/`, lastmod: currentDate, changefreq: 'weekly', priority: '1.0' },
       { url: `${baseUrl}/en/`, lastmod: currentDate, changefreq: 'weekly', priority: '1.0' },
-      { url: `${baseUrl}/zh-tw/`, lastmod: currentDate, changefreq: 'weekly', priority: '1.0' },
       { url: `${baseUrl}/zh/`, lastmod: currentDate, changefreq: 'weekly', priority: '1.0' },
     ];
 

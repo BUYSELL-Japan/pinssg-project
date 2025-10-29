@@ -14,6 +14,42 @@
   status = 301
   force = false
 
+[[redirects]]
+  from = "/en/zh/*"
+  to = "/zh/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/zh/en/*"
+  to = "/en/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/en/en/*"
+  to = "/en/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/zh/zh/*"
+  to = "/zh/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/zh-tw/en/*"
+  to = "/en/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/en/zh-tw/*"
+  to = "/zh/:splat"
+  status = 301
+  force = true
+
 [[headers]]
   for = "/*.html"
   [headers.values]
