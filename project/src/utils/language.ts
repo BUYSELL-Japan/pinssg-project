@@ -1,4 +1,4 @@
-export type Language = 'ja' | 'zh-tw' | 'ko' | 'en';
+export type Language = 'ja' | 'zh' | 'ko' | 'en';
 
 export interface LanguageConfig {
   code: Language;
@@ -7,30 +7,26 @@ export interface LanguageConfig {
 }
 
 export const languages: LanguageConfig[] = [
-  { code: 'zh-tw', name: '繁體中文', flag: '🇹🇼' },
+  { code: 'zh', name: '简体中文', flag: '🇨🇳' },
   { code: 'en', name: 'English', flag: '🇺🇸' }
 ];
 
-export const defaultLanguage: Language = 'zh-tw';
+export const defaultLanguage: Language = 'zh';
 
 export function getLanguageFromPath(pathname: string): Language {
-  if (pathname.startsWith('/zh-tw') || pathname.startsWith('/zh/')) {
-    return 'zh-tw';
+  if (pathname.startsWith('/zh')) {
+    return 'zh';
   } else if (pathname.startsWith('/en')) {
     return 'en';
   }
-  return 'zh-tw';
+  return 'zh';
 }
 
 export function getLocalizedPath(path: string, language: Language): string {
   const safePath = path || '/';
-  const cleanPath = safePath.replace(/^\/(zh-tw|zh|en)/, '');
+  const cleanPath = safePath.replace(/^\/(zh|en)\/spot\//, '/');
 
-  if (language === 'zh-tw') {
-    return `/zh${cleanPath}` || '/zh/';
-  } else {
-    return `/${language}${cleanPath}`;
-  }
+  return `/${language}/spot${cleanPath === '/' ? '/' : cleanPath}`;
 }
 
 export interface GuideItem {
@@ -46,7 +42,7 @@ export interface GuideItem {
 }
 
 export function getLocalizedText(item: GuideItem, field: keyof GuideItem, language: Language): string {
-  if (language === 'zh-tw') {
+  if (language === 'zh') {
     if (field === 'title') return item.title_zh_tw || item.title || '';
     if (field === 'description_en') return item.description_zh_tw || '';
   } else if (language === 'en') {
@@ -83,7 +79,7 @@ export const translations = {
     loadingSpinner: '沖縄の風景を読み込み中...',
     dataLoading: 'データ読み込み中です'
   },
-  'zh-tw': {
+  'zh': {
     siteTitle: '沖繩旅遊指南',
     siteSubtitle: '發現美麗島嶼的魅力',
     siteDescription: '為您介紹沖繩的美麗風景、豐富文化和溫馨體驗。',

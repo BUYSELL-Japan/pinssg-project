@@ -3,6 +3,30 @@
   publish = "dist"
 
 [[redirects]]
+  from = "/en"
+  to = "/en/spot/"
+  status = 301
+  force = false
+
+[[redirects]]
+  from = "/en/"
+  to = "/en/spot/"
+  status = 301
+  force = false
+
+[[redirects]]
+  from = "/zh"
+  to = "/zh/spot/"
+  status = 301
+  force = false
+
+[[redirects]]
+  from = "/zh/"
+  to = "/zh/spot/"
+  status = 301
+  force = false
+
+[[redirects]]
   from = "/zh-tw/*"
   to = "/zh/:splat"
   status = 301
@@ -10,7 +34,7 @@
 
 [[redirects]]
   from = "/zh-tw"
-  to = "/zh"
+  to = "/zh/spot/"
   status = 301
   force = false
 

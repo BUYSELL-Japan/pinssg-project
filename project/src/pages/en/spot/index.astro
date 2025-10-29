@@ -4,11 +4,11 @@ import {
   type Language, 
   getLocalizedText, 
   t 
-} from '../../utils/language';
-import { fetchGuideData } from '../../utils/dataFetcher';
-import LanguageSelector from '../../components/LanguageSelector.astro';
+} from '../../../utils/language';
+import { fetchGuideData } from '../../../utils/dataFetcher';
+import LanguageSelector from '../../../components/LanguageSelector.astro';
 
-const currentLanguage: Language = 'zh-tw';
+const currentLanguage: Language = 'en';
 
 let guideItems: GuideItem[] = [];
 let error = '';
@@ -17,11 +17,11 @@ try {
   guideItems = await fetchGuideData() as GuideItem[];
   console.log('Guide items loaded:', guideItems);
 } catch (e) {
-  error = `資料獲取失敗。請檢查網路連線。: ${e instanceof Error ? e.message : '未知錯誤'}`;
+  error = `Failed to fetch data. Please check your network connection.: ${e instanceof Error ? e.message : 'Unknown error'}`;
   console.error('Fetch error:', e);
 }
 
-import Layout from '../../layouts/Layout.astro';
+import Layout from '../../../layouts/Layout.astro';
 
 const pageTitle = t('siteTitle', currentLanguage) + ' | ' + t('siteSubtitle', currentLanguage);
 const pageDescription = t('siteDescription', currentLanguage);
@@ -31,7 +31,7 @@ const pageDescription = t('siteDescription', currentLanguage);
   <main class="top-page">
     <!-- Language Selector -->
     <div class="language-selector-container">
-      <LanguageSelector currentLanguage={currentLanguage} currentPath="/zh-tw/" />
+      <LanguageSelector currentLanguage={currentLanguage} currentPath="/en/spot/" />
     </div>
 
     <!-- ヘッダーセクション -->
@@ -63,7 +63,7 @@ const pageDescription = t('siteDescription', currentLanguage);
           <div class="guides-grid">
             {guideItems.map((item, index) => (
               <article class="guide-card">
-                <a href={`/zh/spot/${item.slug}/?pin_id=${item.pin_id}`} class="guide-link">
+                <a href={`/en/spot/${item.slug}/?pin_id=${item.pin_id}`} class="guide-link">
                   <div class="guide-image-container">
                     {item.main_image_url && (
                       <img

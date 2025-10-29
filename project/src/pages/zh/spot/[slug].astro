@@ -37,7 +37,7 @@ export async function getStaticPaths() {
 }
 
 const { guideData } = Astro.props;
-const currentLanguage: Language = 'zh-tw';
+const currentLanguage: Language = 'zh';
 
 const pinId = guideData.pin_id;
 const mopUrl = `https://mop-okinawa.com/?pin_id=${pinId}&lang=zh`;
