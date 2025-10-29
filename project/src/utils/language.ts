@@ -14,7 +14,7 @@ export const languages: LanguageConfig[] = [
 export const defaultLanguage: Language = 'zh-tw';
 
 export function getLanguageFromPath(pathname: string): Language {
-  if (pathname.startsWith('/zh-tw')) {
+  if (pathname.startsWith('/zh-tw') || pathname.startsWith('/zh/')) {
     return 'zh-tw';
   } else if (pathname.startsWith('/en')) {
     return 'en';
@@ -24,8 +24,8 @@ export function getLanguageFromPath(pathname: string): Language {
 
 export function getLocalizedPath(path: string, language: Language): string {
   const safePath = path || '/';
-  const cleanPath = safePath.replace(/^\/(zh-tw|en)/, '');
-  
+  const cleanPath = safePath.replace(/^\/(zh-tw|zh|en)/, '');
+
   if (language === 'zh-tw') {
     return `/zh-tw${cleanPath}` || '/zh-tw/';
   } else {
