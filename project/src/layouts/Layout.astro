@@ -6,9 +6,13 @@ interface Props {
   description?: string;
   ogImage?: string;
   ogUrl?: string;
+  alternateUrls?: {
+    en?: string;
+    zh?: string;
+  };
 }
 
-const { title, description, ogImage, ogUrl } = Astro.props;
+const { title, description, ogImage, ogUrl, alternateUrls } = Astro.props;
 const currentLanguage = getLanguageFromPath(Astro.url.pathname);
 
 const defaultTitle = currentLanguage === 'zh'
@@ -47,7 +51,11 @@ const pageUrl = ogUrl || `https://guide-book.mop-okinawa.com${Astro.url.pathname
 		<meta property="twitter:title" content={pageTitle} />
 		<meta property="twitter:description" content={pageDescription} />
 		{ogImage && <meta property="twitter:image" content={ogImage} />}
-		
+
+		<!-- hreflang tags for multilingual SEO -->
+		{alternateUrls?.en && <link rel="alternate" hreflang="en" href={alternateUrls.en} />}
+		{alternateUrls?.zh && <link rel="alternate" hreflang="zh-Hans" href={alternateUrls.zh} />}
+		{alternateUrls?.en && <link rel="alternate" hreflang="x-default" href={alternateUrls.en} />}
 	</head>
 	<body>
 		<slot />

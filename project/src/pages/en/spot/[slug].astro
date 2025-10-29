@@ -60,9 +60,14 @@ const ogImage = guideData.main_image_url;
 const touristAttractionSchema = generateTouristAttractionSchema(guideData, currentLanguage, ogUrl);
 const breadcrumbSchema = generateBreadcrumbSchema(guideData.category, spotTitle, currentLanguage, baseUrl, guideData.slug);
 const webPageSchema = generateWebPageSchema(guideData, currentLanguage, ogUrl, baseUrl);
+
+const alternateUrls = {
+  en: `${baseUrl}/en/spot/${guideData.slug}/`,
+  zh: `${baseUrl}/zh/spot/${guideData.slug}/`
+};
 ---
 
-<Layout title={pageTitle} description={pageDescription} ogUrl={ogUrl} ogImage={ogImage}>
+<Layout title={pageTitle} description={pageDescription} ogUrl={ogUrl} ogImage={ogImage} alternateUrls={alternateUrls}>
   <script type="application/ld+json" set:html={JSON.stringify(touristAttractionSchema)} />
   <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
   <script type="application/ld+json" set:html={JSON.stringify(webPageSchema)} />
@@ -74,7 +79,7 @@ const webPageSchema = generateWebPageSchema(guideData, currentLanguage, ogUrl, b
 
     <article class="guide-article">
       <nav class="breadcrumb">
-        <a href="/en/" class="breadcrumb-link">🏠 {homeText}</a>
+        <a href="/en/spot/" class="breadcrumb-link">🏠 {homeText}</a>
         <span class="breadcrumb-separator">›</span>
         <span class="breadcrumb-current">{getLocalizedText(guideData, 'title', currentLanguage)}</span>
       </nav>

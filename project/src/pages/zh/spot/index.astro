@@ -25,9 +25,15 @@ import Layout from '../../../layouts/Layout.astro';
 
 const pageTitle = t('siteTitle', currentLanguage) + ' | ' + t('siteSubtitle', currentLanguage);
 const pageDescription = t('siteDescription', currentLanguage);
+
+const baseUrl = 'https://mop-okinawa.com';
+const alternateUrls = {
+  en: `${baseUrl}/en/spot/`,
+  zh: `${baseUrl}/zh/spot/`
+};
 ---
 
-<Layout title={pageTitle} description={pageDescription}>
+<Layout title={pageTitle} description={pageDescription} alternateUrls={alternateUrls}>
   <main class="top-page">
     <!-- Language Selector -->
     <div class="language-selector-container">

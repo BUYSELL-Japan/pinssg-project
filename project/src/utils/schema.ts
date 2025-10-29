@@ -99,10 +99,10 @@ export function generateBreadcrumbSchema(
   baseUrl: string,
   spotSlug: string
 ) {
-  const homeUrl = language === 'en' ? `${baseUrl}/en/` : `${baseUrl}/zh-tw/`;
+  const homeUrl = language === 'en' ? `${baseUrl}/en/spot/` : `${baseUrl}/zh/spot/`;
   const spotUrl = language === 'en'
     ? `${baseUrl}/en/spot/${spotSlug}/`
-    : `${baseUrl}/zh-tw/spot/${spotSlug}/`;
+    : `${baseUrl}/zh/spot/${spotSlug}/`;
 
   const homeName = language === 'en' ? 'Home' : '主頁';
 
