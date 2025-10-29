@@ -2,6 +2,23 @@
   command = "npm run build"
   publish = "dist"
 
+[[redirects]]
+  from = "/zh-tw/*"
+  to = "/zh/:splat"
+  status = 301
+  force = false
+
+[[redirects]]
+  from = "/zh-tw"
+  to = "/zh"
+  status = 301
+  force = false
+
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
 [[headers]]
   for = "/_astro/*"
   [headers.values]
